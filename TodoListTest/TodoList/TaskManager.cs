@@ -24,5 +24,11 @@ namespace TodoList
         {
             _repository.Remove(id);
         }
+
+        public void MarkComplete(Guid id)
+        {
+            var task = _repository.Get(id);
+            task.IsComplete = true;
+        }
     }
 }

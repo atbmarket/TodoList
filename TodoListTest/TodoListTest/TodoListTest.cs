@@ -44,5 +44,19 @@ namespace TodoListTest
             //assert
             repository.Received().Remove(task.Id);
         }
+        [Theory]
+        [NSubData]
+        public void should_mark_complete_task(ITodoTask task, [Frozen]ITodoRepository repository, TaskManager manager)
+        {
+            // arrange            
+            repository.Get(task.Id).Returns(task);
+
+            // act
+            manager.MarkComplete(task.Id);
+
+            //assert
+            repository.Received().Get(task.Id);
+            task.IsComplete.Should().BeTrue();
+        }
     }
 }
