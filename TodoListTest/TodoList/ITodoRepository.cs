@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TodoList
 {
@@ -7,5 +8,6 @@ namespace TodoList
         void Add(ITodoTask task);
         ITodoTask Get(Guid id);
         void Remove(Guid id);
+        IEnumerable<ITodoTask> GetAll();
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace TodoList
 {
@@ -29,6 +31,11 @@ namespace TodoList
         {
             var task = _repository.Get(id);
             task.IsComplete = true;
+        }
+
+        public IEnumerable<ITodoTask> GetAll()
+        {
+            return _repository.GetAll();
         }
     }
 }

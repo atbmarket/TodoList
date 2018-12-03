@@ -58,5 +58,14 @@ namespace TodoListTest
             repository.Received().Get(task.Id);
             task.IsComplete.Should().BeTrue();
         }
+        [Theory]
+        [NSubData]
+        public void should_return_all_tasks([Frozen]ITodoRepository repository, TaskManager manager)
+        {
+            // action
+            manager.GetAll();
+            //assert
+            repository.Received().GetAll();
+        }
     }
 }
