@@ -10,10 +10,15 @@ namespace TodoList
         {
             _repository = repository;
         }
-
         public void Add(ITodoTask task)
         {
             _repository.Add(task);
         }
+        public void Update(Guid id, string content)
+        {
+            var task = _repository.Get(id);
+            task.Content = content;
+        }
+
     }
 }
