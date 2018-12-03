@@ -6,5 +6,6 @@ namespace TodoList
     {
         void Add(ITodoTask task);
         ITodoTask Get(Guid id);
+        void Remove(Guid id);
     }
 }

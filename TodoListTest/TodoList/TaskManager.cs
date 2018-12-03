@@ -20,5 +20,9 @@ namespace TodoList
             task.Content = content;
         }
 
+        public void Remove(Guid id)
+        {
+            _repository.Remove(id);
+        }
     }
 }

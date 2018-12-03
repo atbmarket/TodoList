@@ -38,7 +38,21 @@ namespace TodoListTest
             //assert
             repository.Received().Get(task.Id);
             task.Content.Should().Be(newContent);
-        }      
+        }
 
+        [Fact]
+        public void should_delete_task()
+        {
+            // arrange            
+            var repository = Substitute.For<ITodoRepository>();
+            var manager = new TaskManager(repository);
+            var task = Substitute.For<ITodoTask>();
+
+            // act
+            manager.Remove(task.Id);
+
+            //assert
+            repository.Received().Remove(task.Id);
+        }
     }
 }
