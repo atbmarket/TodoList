@@ -67,5 +67,29 @@ namespace TodoListTest
             //assert
             repository.Received().GetAll();
         }
+        [Theory]
+        [NSubData]
+        public void should_notify_when_change_content_of_task(ITodoTask task, [Frozen]ITodoRepository repository, [Frozen]ITaskNotifier notify, TaskManager manager, string newContent)
+        {
+            // arrange
+            repository.Get(task.Id).Returns(task);
+            // action
+            manager.Update(task.Id, newContent);
+            //assert
+            notify.Received().Notify(task);
+        }
+        [Theory]
+        [NSubData]
+        public void should_notify_when_change_state_of_task(ITodoTask task, [Frozen]ITodoRepository repository, [Frozen]ITaskNotifier notify, TaskManager manager, string newContent)
+        {
+            // arrange
+            repository.Get(task.Id).Returns(task);
+            // action
+            manager.MarkComplete(task.Id);
+            //assert
+            notify.Received().Notify(task);
+
+            task.IsComplete.Should().BeTrue();
+        }
     }
 }
