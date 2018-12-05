@@ -1,7 +1,7 @@
 ﻿namespace TodoList
 {
-    public interface ITaskNotifier
+    public interface INotifier<T>
     {
-        void Notify(ITodoTask task);
+        void Notify(T message);
     }
 }

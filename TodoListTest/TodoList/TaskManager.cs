@@ -7,9 +7,9 @@ namespace TodoList
     public class TaskManager
     {
         private readonly ITodoRepository _repository;
-        private readonly ITaskNotifier _notifier;
+        private readonly INotifier<ITodoTask> _notifier;
 
-        public TaskManager(ITodoRepository repository, ITaskNotifier notifier)
+        public TaskManager(ITodoRepository repository, INotifier<ITodoTask> notifier)
         {
             _repository = repository;
             _notifier = notifier;
@@ -22,6 +22,7 @@ namespace TodoList
         {
             var task = _repository.Get(id);
             task.Content = content;
+            ///
             _notifier.Notify(task);
         }
 
@@ -34,6 +35,7 @@ namespace TodoList
         {
             var task = _repository.Get(id);
             task.IsComplete = true;
+            ///
             _notifier.Notify(task);
         }
 

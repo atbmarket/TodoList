@@ -12,7 +12,8 @@ namespace TodoListTest
     {
         [Theory]
         [NSubData]
-        public void should_create_task(ITodoTask task, [Frozen]ITodoRepository repository, TaskManager manager)
+        public void should_create_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, TaskManager manager)
         {
             // act
             manager.Add(task);
@@ -21,7 +22,8 @@ namespace TodoListTest
         }
         [Theory]
         [NSubData]
-        public void should_change_task(ITodoTask task, [Frozen]ITodoRepository repository, TaskManager manager, string newContent)
+        public void should_change_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, TaskManager manager, string newContent)
         {
             // arrange            
             repository.Get(task.Id).Returns(task);
@@ -36,7 +38,8 @@ namespace TodoListTest
 
         [Theory]
         [NSubData]
-        public void should_delete_task(ITodoTask task, [Frozen]ITodoRepository repository, TaskManager manager)
+        public void should_delete_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, TaskManager manager)
         {
             // act
             manager.Remove(task.Id);
@@ -46,7 +49,8 @@ namespace TodoListTest
         }
         [Theory]
         [NSubData]
-        public void should_mark_complete_task(ITodoTask task, [Frozen]ITodoRepository repository, TaskManager manager)
+        public void should_mark_complete_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, TaskManager manager)
         {
             // arrange            
             repository.Get(task.Id).Returns(task);
@@ -69,7 +73,9 @@ namespace TodoListTest
         }
         [Theory]
         [NSubData]
-        public void should_notify_when_change_content_of_task(ITodoTask task, [Frozen]ITodoRepository repository, [Frozen]ITaskNotifier notify, TaskManager manager, string newContent)
+        public void should_notify_when_change_content_of_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, 
+            [Frozen]INotifier<ITodoTask> notify, TaskManager manager, string newContent)
         {
             // arrange
             repository.Get(task.Id).Returns(task);
@@ -80,7 +86,9 @@ namespace TodoListTest
         }
         [Theory]
         [NSubData]
-        public void should_notify_when_change_state_of_task(ITodoTask task, [Frozen]ITodoRepository repository, [Frozen]ITaskNotifier notify, TaskManager manager, string newContent)
+        public void should_notify_when_change_state_of_task(ITodoTask task, 
+            [Frozen]ITodoRepository repository, 
+            [Frozen]INotifier<ITodoTask> notify, TaskManager manager)
         {
             // arrange
             repository.Get(task.Id).Returns(task);

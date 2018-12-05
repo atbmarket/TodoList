@@ -1,0 +1,10 @@
+﻿X-Sender: src@aa.ss
+X-Receiver: to@aa.ss
+MIME-Version: 1.0
+From: src@aa.ss
+To: to@aa.ss
+Subject: subject
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+body
