@@ -8,6 +8,7 @@ using System.Text;
 using TodoList;
 using Xunit;
 
+[assembly: FrontLoadedReporter(typeof(BeyondCompare4Reporter))]
 namespace TodoListTest
 {
     [UseReporter(typeof(BeyondCompare4Reporter))]
