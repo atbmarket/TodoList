@@ -17,7 +17,7 @@ namespace TodoListTest
         {
             // act
             manager.Add(task);
-            //assert
+            // assert
             repository.Received().Add(task);
         }
         [Theory]
@@ -31,7 +31,7 @@ namespace TodoListTest
             // act
             manager.Update(task.Id, newContent);
             
-            //assert
+            // assert
             repository.Received().Get(task.Id);
             task.Content.Should().Be(newContent);
         }
