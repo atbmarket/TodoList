@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoListTest", "TodoListTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList", "TodoList\TodoList.csproj", "{E44BB883-2659-4C75-817B-3DDFD19EE1CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoListWebApi", "TodoListWebApi\TodoListWebApi.csproj", "{695A0B43-5E74-4D8A-ADFC-1F477B5E9FDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoListWebApi", "TodoListWebApi\TodoListWebApi.csproj", "{695A0B43-5E74-4D8A-ADFC-1F477B5E9FDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapService", "SoapService\SoapService.csproj", "{5D45D72C-DE37-4DED-B407-79642C1DA82F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{A278BAC5-291F-4781-A9EC-0D7D1923C517}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{695A0B43-5E74-4D8A-ADFC-1F477B5E9FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{695A0B43-5E74-4D8A-ADFC-1F477B5E9FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695A0B43-5E74-4D8A-ADFC-1F477B5E9FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D45D72C-DE37-4DED-B407-79642C1DA82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D45D72C-DE37-4DED-B407-79642C1DA82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D45D72C-DE37-4DED-B407-79642C1DA82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D45D72C-DE37-4DED-B407-79642C1DA82F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A278BAC5-291F-4781-A9EC-0D7D1923C517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A278BAC5-291F-4781-A9EC-0D7D1923C517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A278BAC5-291F-4781-A9EC-0D7D1923C517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A278BAC5-291F-4781-A9EC-0D7D1923C517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
