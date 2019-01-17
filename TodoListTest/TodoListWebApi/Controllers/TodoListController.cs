@@ -26,18 +26,23 @@ namespace TodoListWebApi.Controllers
 
         // POST api/values
         [HttpPost("{email}")]
-        public ActionResult<IEnumerable<ITodoTask>> Post(string email, [FromBody]string content)
+        public ActionResult<IEnumerable<ITodoTask>> Post(string email, [FromBody]TaskContentModel model)
         {
-            _taskManager.Add(new TodoTask(email) { Content = content });
+            _taskManager.Add(new TodoTask(email) { Content = model.Content });
             return Ok(_taskManager.GetAll());
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public ActionResult<IEnumerable<ITodoTask>> Put(Guid id, [FromBody] string value)
+        public ActionResult<IEnumerable<ITodoTask>> Put(Guid id, [FromBody] TaskContentModel model)
         {
-            _taskManager.Update(id, value);
+            _taskManager.Update(id, model.Content);
             return Ok(_taskManager.GetAll());
+        }
+
+        public class TaskContentModel
+        {
+            public string Content { get; set; }
         }
 
         [HttpPut("SetComplete/{id}")]

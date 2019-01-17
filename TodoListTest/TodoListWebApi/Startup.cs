@@ -29,11 +29,6 @@ namespace TodoListWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ITodoTask, TodoTask>();
-            services.AddSingleton<ITodoRepository, TodoRepository>();
-            services.AddSingleton<INotifier<ITodoTask>, NullTaskNotifier>();
-            services.AddTransient<TaskManager>();
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>
@@ -41,9 +36,39 @@ namespace TodoListWebApi
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Todo List", Version = "v1" });
             });
 
-            var container = new ContainerBuilder();
+            var container = CreateContainerBuilder();
             container.Populate(services);
             return new AutofacServiceProvider(container.Build());
+        }
+
+        private static ContainerBuilder CreateContainerBuilder()
+        {
+            var containerBuilder = new ContainerBuilder();
+
+            // here we register all interfaces and all types
+            containerBuilder.RegisterAssemblyTypes(
+                typeof(Startup).Assembly,
+                typeof(IMapper<,>).Assembly)
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            // we need to re-register repository, since it should be a singletone
+            containerBuilder
+                .RegisterType<TodoRepository>()
+                .As<ITodoRepository>()
+                .SingleInstance();
+
+            return containerBuilder;
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            // we don't need to setup ASP.NET DI because we use autofac anyway
+
+            //services.AddTransient<ITodoTask, TodoTask>();
+            //services.AddSingleton<ITodoRepository, TodoRepository>();
+            //services.AddSingleton<INotifier<ITodoTask>, NullTaskNotifier>();
+            //services.AddTransient<TaskManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
