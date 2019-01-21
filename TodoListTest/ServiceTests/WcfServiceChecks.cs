@@ -10,28 +10,22 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Xunit;
 #pragma warning disable IDE1006 // Naming Styles
+
+[assembly: FrontLoadedReporter(typeof(BeyondCompare4Reporter))]
 namespace ServiceTests
 {
     public class WcfServiceChecks
     {
         [Fact]
-        [UseReporter(typeof(DiffReporter))]
+        [UseReporter(typeof(BeyondCompare4Reporter))]
         public void ensure_wsdl_is_stable()
         {
             const string address = "http://localhost:11111/hello";
             using (var host = CreateAndOpenHost(address))
             {
-                var wsdl = DownloadXml($"{address}?wsdl");
-                var sb = new StringBuilder().AppendLine("<content>").AppendLine(wsdl);
+                var wsdl = new HttpClient().GetStringAsync($"{address}?singleWsdl").Result;
 
-                sb = Regex.Matches(wsdl, @"schemaLocation=""(?<url>[^""]+)""")
-                                        .Cast<Match>()
-                                        .Select(_ => _.Groups["url"].Value)
-                                        .Aggregate(sb, (b, c) => b.AppendLine($"<c text=\"{c}\"></c>").AppendLine(DownloadXml(c)));
-
-                sb.Append("</content>");
-
-                Approvals.VerifyXml(sb.ToString());
+                Approvals.VerifyXml(wsdl);
             }
         }
 
@@ -52,12 +46,6 @@ namespace ServiceTests
             };
             smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
             host.Description.Behaviors.Add(smb);
-        }
-
-        private static string DownloadXml(string address)
-        {
-            var client = new HttpClient();
-            return client.GetStringAsync(address).Result.Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
         }
     }
 }
